@@ -1,0 +1,92 @@
+**TAREA 5
+**GRUPO 3CM6
+**ASIGNATURA: WEB APPLICATION DEVELOPMENT.
+**ALUMNO: MORALES FLORES VÍCTOR LEONEL
+
+->En la carpete src se encuentra la carpeta del proyecto desarrollado con el IDE Eclipse con nombre '3cm6-tarea6-mfvl'.
+
+-->El código fuente de los servlets se encuentran dentro de src en la ruta:
+	3cm6-tarea5-mfvl/src/main/java/mx/ipn/escom/wad/servlets.
+
+-->Los servlets dentro del proyecto son:
+
+	--FormLogIn: Contiene el formulario para ingresar usuario y contraseña del usuario que quiere ingresar. Al dar clic en send invoca al servlet "ServletAutenticacion"
+
+	--Home: Servlet donde se visualiza el nombre del usuario y el rol que tiene según la BD.
+
+	--ServletAutenticacion: Servlet que recibe los parámetros de FormLogIn y verifica que exista el usuario y la contraseña sea correcta. Si los valores son correctos hace un forward a Home. Este servlet recibe las peticiones por el método doPost. En caso de querer accesar al servicio a través del método doGet el servlet enviará un error 666.
+
+-->Los archivos correspondiente a los jsp y los js se encuentran dentro de src en la ruta:
+**NOTA: En este proyecto no se usaron archivos jsp, js o html.
+
+-->Para ejecutar la tarea se debe abrir el proyecto en el IDE Eclipse, ejecutar el proyecto con Jetty y dirigirse a través del navegador a la ruta:
+http://localhost:8080/3cm6-tarea6-mfvl/
+
+-->La base de datos utilizada fue la proporcionada por el profesor M. en C. Hermes Francisco Montes Casiano con el siguiente script:
+
+**************************************************
+createdb homework-6;
+**************************************************
+create table users (id_user int4 not null, tx_login varchar(30) not null unique, tx_password varchar(100) not null, primary key (id_user));
+create table role (id_role serial not null, nb_role varchar(50) not null unique, ds_role varchar(250) not null, st_valid bool not null, primary key (id_role));
+create table account (id_account serial not null, id_role int4 not null, id_user int4 not null, fh_begin date not null, fh_end date, primary key (id_account));
+create table person (id_person serial not null, tx_first_name varchar(30) not null, tx_last_name_a varchar(30) not null, tx_last_name_b varchar(30) not null, tx_curp varchar(18) not null unique, fh_birth date not null, primary key (id_person));
+create table access (id_access int4 not null, nu_attempt int4 not null, fh_failed timestamp(0), fh_lock timestamp(0), primary key (id_access));
+create table type_contact (id_type serial not null, nb_type varchar(50) not null unique, ds_type varchar(200) not null, st_valid bool not null, primary key (id_type));
+create table person_contacto (id_persona_contacto serial not null, id_persona int4 not null, id_tipo int4 not null, tx_contact varchar(50), primary key (id_persona_contacto));
+create table contact (id_person int4 not null, id_contact int4 not null, primary key (id_person, id_contact));
+alter table account add constraint FKaccount713322 foreign key (id_role) references role;
+alter table account add constraint FKaccount999795 foreign key (id_user) references users;
+alter table access add constraint FKaccess801659 foreign key (id_access) references users;
+alter table person_contacto add constraint FKperson_con849379 foreign key (id_persona) references person;
+alter table person_contacto add constraint FKperson_con408257 foreign key (id_tipo) references type_contact;
+alter table users add constraint FKusers311802 foreign key (id_user) references person;
+alter table contact add constraint FKcontact249289 foreign key (id_person) references person;
+alter table contact add constraint FKcontact337911 foreign key (id_contact) references person;
+**************************************************
+-- Roles
+
+insert into role(nb_role, ds_role, st_valid) values ('Técnico','Director técnico de futbol',true);
+insert into role(nb_role, ds_role, st_valid) values ('Jugador','Jugador profesional de futbol',true);
+
+-- Personas
+insert into person(tx_first_name, tx_last_name_a, tx_last_name_b, tx_curp, fh_birth) values ('Ricardo', 'Ferreti', 'Oliveria', 'MOCH870812HGRX00', to_date('01/01/1950','dd/MM/yyyy'));
+insert into person(tx_first_name, tx_last_name_a, tx_last_name_b, tx_curp, fh_birth) values ('Rafael', 'Márquez', 'Álvarez', 'MOCH870812HGRX01', to_date('01/01/1960','dd/MM/yyyy'));
+insert into person(tx_first_name, tx_last_name_a, tx_last_name_b, tx_curp, fh_birth) values ('Javier', 'Hernández', 'Balcázar', 'MOCH870812HGRX02', to_date('01/01/1970','dd/MM/yyyy'));
+insert into person(tx_first_name, tx_last_name_a, tx_last_name_b, tx_curp, fh_birth) values ('José Andrés', 'Guardado', 'Hernández', 'MOCH870812HGRX03', to_date('01/01/1980','dd/MM/yyyy'));
+insert into person(tx_first_name, tx_last_name_a, tx_last_name_b, tx_curp, fh_birth) values ('Cristiano Ronaldo', 'Dos Santos', 'Aveiro', 'MOCH870812HGRX04', to_date('01/01/1990','dd/MM/yyyy'));
+
+-- Usuarios
+insert into users(id_user, tx_login, tx_password) values (1,'tuca_ferreti@gmail.com', 'prueba123');
+insert into users(id_user, tx_login, tx_password) values (2,'rafael_marquez@gmail.com', 'prueba123');
+insert into users(id_user, tx_login, tx_password) values (3,'chicharito_hernandez@gmail.com', 'prueba123');
+insert into users(id_user, tx_login, tx_password) values (4,'andres_guardado@gmail.com', 'prueba123');
+insert into users(id_user, tx_login, tx_password) values (5,'cristiano_ronaldo@gmail.com', 'prueba123');
+
+-- Cuentas
+insert into account(id_role, id_user, fh_begin, fh_end) values (1, 1, to_date('01/01/2018','dd/MM/yyyy'), to_date('31/12/1950','dd/MM/yyyy'));
+insert into account(id_role, id_user, fh_begin, fh_end) values (2, 2, to_date('01/01/2018','dd/MM/yyyy'), to_date('31/12/2018','dd/MM/yyyy'));
+insert into account(id_role, id_user, fh_begin, fh_end) values (2, 3, to_date('01/01/2018','dd/MM/yyyy'), to_date('31/12/2018','dd/MM/yyyy'));
+insert into account(id_role, id_user, fh_begin, fh_end) values (2, 4, to_date('01/01/2018','dd/MM/yyyy'), to_date('31/12/2018','dd/MM/yyyy'));
+insert into account(id_role, id_user, fh_begin, fh_end) values (2, 5, to_date('01/01/2018','dd/MM/yyyy'), null);
+
+-- Acceso
+insert into access(id_access, nu_attempt, fh_failed, fh_lock) values (1,0,null,null);
+insert into access(id_access, nu_attempt, fh_failed, fh_lock) values (2,0,null,null);
+insert into access(id_access, nu_attempt, fh_failed, fh_lock) values (3,0,null,null);
+insert into access(id_access, nu_attempt, fh_failed, fh_lock) values (4,0,null,null);
+insert into access(id_access, nu_attempt, fh_failed, fh_lock) values (5,0,null,null);
+
+-- Tipo contacto
+insert into type_contact(nb_type, ds_type, st_valid) values ('Telephone','Telephone',true);
+insert into type_contact(nb_type, ds_type, st_valid) values ('Email','Email',true);
+insert into type_contact(nb_type, ds_type, st_valid) values ('Mobile phone','Mobile phone',true);
+insert into type_contact(nb_type, ds_type, st_valid) values ('Facebook','Facebook',true);
+insert into type_contact(nb_type, ds_type, st_valid) values ('Twitter','Twitter',true);
+
+--Contactos
+insert into person_contacto(id_persona, id_tipo, tx_contact) values (1,1,'5555555555');
+insert into person_contacto(id_persona, id_tipo, tx_contact) values (2,2,'aaaa.bbbb@cccc.com');
+insert into person_contacto(id_persona, id_tipo, tx_contact) values (3,3,'5555555555');
+insert into person_contacto(id_persona, id_tipo, tx_contact) values (4,4,'Facebook');
+insert into person_contacto(id_persona, id_tipo, tx_contact) values (5,5,'@Twitter');
