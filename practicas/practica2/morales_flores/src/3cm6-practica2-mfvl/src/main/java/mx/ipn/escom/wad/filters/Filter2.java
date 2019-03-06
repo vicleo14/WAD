@@ -1,5 +1,4 @@
-package mx.ipn.escom.wad.servlets;
-import java.util.logging.Logger;
+package mx.ipn.escom.wad.filters;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -13,30 +12,31 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-public class Filter1 implements Filter {
+public class Filter2 implements Filter {
 
-    public Filter1() {
-       
+    public Filter2() {
     }
-
 	public void destroy() {
 		
 	}
-
-
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
+
 		HttpServletRequest req=(HttpServletRequest)request;
 		Date fecha =new Date();
 		DateFormat df=new SimpleDateFormat("dd/MM/yy | HH:mm:ss");
 		
-		System.out.println("Filter: "+req.getLocalAddr()+" | "+df.format(fecha)+" | "+req.getMethod()+" |"+req.getRequestURL());
-		chain.doFilter(request, response);
+		System.out.println("Filter2: "+req.getRemoteAddr()+" | "+df.format(fecha)+" | "+req.getMethod()+" |"+req.getRequestURL()+"| NOT ALLOWED");
+		HttpServletResponse resp=(HttpServletResponse)response;
+		resp.sendError(666);
+		//chain.doFilter(request, response);
 	}
 
+	/**
+	 * @see Filter#init(FilterConfig)
+	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-
 	}
 
 }

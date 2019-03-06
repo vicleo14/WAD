@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>New User</title>
+<script type="text/javascript" src="verificarClave.js"></script>
+</head>
+<body style="text-align: center;">
+	<h1>New User</h1>
+	<div>
+		<form action="Servlet5" method="post" name="form1">
+			<table>
+			<tr>
+			
+			<td><label for="name">First Name:</label></td>
+			<td><input type="text" name="name" id="name"></td>
+			</tr>
+			<tr>
+			<td><label for="lname">Last Name:</label></td>
+			<td><input type="text" name="lname" id="lname"></td>
+			</tr>
+			<tr>
+			<td><label for="sname">Second last name:</label></td>
+			<td><input type="text" name="sname" id="sname"></td>
+			</tr>			
+			<tr>
+			<td><label for="curp">CURP:</label></td>
+			<td><input type="text" name="curp" id="curp"></td>
+			</tr>
+			<tr>
+			<td><label for="birthday">Birthday:</label></td>
+			<td><input type="date" name="birthday" id="birthday"></td>
+			</tr>
+			
+			
+			<tr>
+			<td><label for="login">Login:</label></td>
+			<td><input type="email" name="login" id="login"></td>
+			
+			</tr>
+			
+			
+			<tr>
+			<td><label for="pswd">Password:</label></td>
+			<td><input type="password" name="pswd" id="pswd"></td>
+			</tr>
+			
+			<tr>
+			<td><label for="rpswd">Confirm Password:</label></td>
+			<td><input type="password" name="rpswd" id="rpswd"></td>
+			</tr>
+			
+			<tr>
+			<td><button onclick="comprobarClave()" value="Save">Save</button></td>
+			<td><button onclick="location.href='Servlet5';" value="Cancelar">Cancelar</button></td>
+			</tr>
+			</table>
+		</form>
+	</div>
+	
+<br />
+</body>
+</html>
