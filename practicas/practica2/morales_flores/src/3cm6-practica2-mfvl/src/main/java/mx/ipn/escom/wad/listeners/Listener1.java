@@ -39,7 +39,7 @@ public class Listener1 implements ServletContextListener, ServletContextAttribut
 
     public void attributeRemoved(ServletContextAttributeEvent event)  { 
          String name=event.getName();
-         String value=(String)event.getValue();
+         String value=event.getValue().toString();
          System.out.println("Listener1("+(new Date()).getTime()+")::Se ha eliminado el atributo:"+name+" con el valor:"+value + " del ServletContext");
     }
 
@@ -48,7 +48,7 @@ public class Listener1 implements ServletContextListener, ServletContextAttribut
      */
     public void attributeAdded(ServletRequestAttributeEvent srae)  { 
     	String name=srae.getName();
-        String value=(String)srae.getValue();
+        String value=srae.getValue().toString();
         
         System.out.println("Listener1("+(new Date()).getTime()+")::Se ha añadido el atributo:"+name+" con el valor:"+value + " del ServletRequest");
     }
@@ -58,7 +58,7 @@ public class Listener1 implements ServletContextListener, ServletContextAttribut
      */
     public void attributeReplaced(HttpSessionBindingEvent event)  { 
     	String name=event.getName();
-        String value=(String)event.getValue();
+        String value=event.getValue().toString();
         
         System.out.println("Listener1("+(new Date()).getTime()+")::Se ha remplazado el atributo:"+name+" con el valor:"+value + " en la sesion");
     }
@@ -76,7 +76,7 @@ public class Listener1 implements ServletContextListener, ServletContextAttribut
      */
     public void attributeAdded(ServletContextAttributeEvent event)  { 
     	String name=event.getName();
-        String value=(String)event.getValue();
+        String value=event.getValue().toString();
         
         System.out.println("Listener1("+(new Date()).getTime()+")::Se ha añadido el atributo:"+name+" con el valor:"+value + "del ServletContext");
     }
@@ -95,7 +95,7 @@ public class Listener1 implements ServletContextListener, ServletContextAttribut
      */
     public void attributeRemoved(ServletRequestAttributeEvent srae)  { 
     	String name=srae.getName();
-        String value=(String)srae.getValue();
+        String value=srae.getValue().toString();
         
         System.out.println("Listener1("+(new Date()).getTime()+")::Se ha removido el atributo:"+name+" con el valor:"+value + "del ServletRequest");
     }
@@ -126,7 +126,7 @@ public class Listener1 implements ServletContextListener, ServletContextAttribut
     public void contextDestroyed(ServletContextEvent sce)  { 
     	String name=sce.toString();
         
-        System.out.println("Listener1("+(new Date()).getTime()+")::Se ha destruido el ServletContext");
+        System.out.println("Listener1("+(new Date()name).getTime()+")::Se ha destruido el ServletContext");
    
     }
 
@@ -154,14 +154,20 @@ public class Listener1 implements ServletContextListener, ServletContextAttribut
      * @see HttpSessionAttributeListener#attributeRemoved(HttpSessionBindingEvent)
      */
     public void attributeRemoved(HttpSessionBindingEvent event)  { 
-         // TODO Auto-generated method stub
+    	String name=event.getName();
+    	String value=event.getValue().toString();
+        
+        System.out.println("Listener1("+(new Date()).getTime()+")::Se ha removido el atributo:"+name+" con valor "+value+" en la sesión");
     }
 
 	/**
      * @see ServletContextAttributeListener#attributeReplaced(ServletContextAttributeEvent)
      */
     public void attributeReplaced(ServletContextAttributeEvent event)  { 
-         // TODO Auto-generated method stub
+    	String name=event.getName();
+    	String value=event.getValue().toString();
+        
+        System.out.println("Listener1("+(new Date()).getTime()+")::Se ha remplazado el atributo:"+name+" con valor "+value+" en el ServletContext");
     }
 	
 }
