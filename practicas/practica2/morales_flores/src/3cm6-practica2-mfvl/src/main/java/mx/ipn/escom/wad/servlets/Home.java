@@ -1,5 +1,5 @@
 package mx.ipn.escom.wad.servlets;
-import mx.ipn.escom.database.Conexion;
+import mx.ipn.escom.wad.tarea6.exception.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -9,13 +9,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import mx.ipn.escom.wad.tarea6.entidad.*;
 
 public class Home extends HttpServlet {
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		doPost(request,response);
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		String usrId=(String)request.getAttribute("id");
-		String name="",rol="";
+		
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf8");
 		PrintWriter out = response.getWriter();
@@ -28,33 +34,26 @@ public class Home extends HttpServlet {
 		out.println("<body  style=\"text-align: center;\">");
 		out.println("<h2>Welcome</h2>");
 		out.println("<div>");
-		if(usrId!=null)
+		HttpSession session =request.getSession();
+		Object o=session.getAttribute(NombreObjetosSession.USER);
+		if(o instanceof Usuario)
 		{
-			String query="SELECT tx_first_name,tx_last_name_a,tx_last_name_b FROM person "+
-					" WHERE id_person="+usrId+";";
-			String query2="SELECT role.nb_role "+
-					"FROM role INNER JOIN ACCOUNT ON role.id_role=account.id_role "+
-					"WHERE account.id_user="+usrId+";";
-			Conexion con=new Conexion();
-			ResultSet resultado=con.execute(query);
-			ResultSet resultado2=con.execute(query2);
-			try
-			{
-				resultado.next();
-				name=resultado.getString(1)+" "+resultado.getString(2)+" "+resultado.getString(3);
-				resultado2.next();
-				rol=resultado2.getString(1);
-			}
-			catch(SQLException sqlex)
-			{
-				System.out.println(sqlex.toString());
-			}
-			con.close();
+			Usuario us=(Usuario)o;
+			int usrId=us.getId();
+			String name=us.getPersona().getNombre()+" "+us.getPersona().getPrimerApellido()+" "+us.getPersona().getSegundoApellido();
+			String rol;
 			out.println("<h3>"+name+"</h3>");
-			out.println("<h4>"+rol+"</h4>");
+			out.println("<h4>"+us.getCuentas().get(0).getRol().getNombre()+"</h4>");
 		}
 		else
+		{
 			response.sendError(666);
+		}
+		
+		
+			
+		
+		
 		out.println("</div>");		
 		out.println("</body>");
 		out.println("</html>");

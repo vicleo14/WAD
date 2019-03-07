@@ -12,14 +12,29 @@ public class ServiceCounter extends HttpServlet {
 	
 
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
+	/*protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int counter=0;
+		System.out.println("Error");
+		response.setContentType("text/html");
+		PrintWriter out=response.getWriter();
+		counter++;
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>");
+		out.println("WAD:Practica 1.3");
+		out.println("</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<h1>Service counter</h1>");
+		out.println("<h4>Counter:"+counter+"</h4>");
+		out.println("</body>");
+		out.println("</html>");
+	}*/
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int counter=0;
-		
+		//System.out.println("Error");
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		counter++;

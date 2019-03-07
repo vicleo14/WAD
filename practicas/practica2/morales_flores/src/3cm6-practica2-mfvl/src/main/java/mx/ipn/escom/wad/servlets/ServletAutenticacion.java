@@ -19,7 +19,8 @@ public class ServletAutenticacion extends HttpServlet {
 		String user=request.getParameter("user");
 		String pswd=request.getParameter("pswd");
 		
-		try {
+		try 
+		{
 			String query="SELECT id_user FROM users"+
 			" WHERE tx_login='"+user+"' AND tx_password='"+pswd+"';";
 			Conexion con=new Conexion();
@@ -38,7 +39,7 @@ public class ServletAutenticacion extends HttpServlet {
 		}
 		catch(Exception ex)
 		{
-			
+			System.out.println("Error:"+ex.toString());
 		}
 		
 	}

@@ -10,48 +10,20 @@
   	<description></description>
   	<filter-class>mx.ipn.escom.wad.filters.Filter1</filter-class>
   </filter>
-  <filter>
-  	<filter-name>Filter2</filter-name>
-  	<display-name>Filter2</display-name>
-  	<description></description>
-  	<filter-class>mx.ipn.escom.wad.filters.Filter2</filter-class>
-  </filter>
-  <filter>
-  	<filter-name>Filter3</filter-name>
-  	<display-name>Filter3</display-name>
-  	<description></description>
-  	<filter-class>mx.ipn.escom.wad.filters.Filter3</filter-class>
-  </filter>
+  
+  
   <filter-mapping>
   	<filter-name>Filter1</filter-name>
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
-  <filter-mapping>
-  	<filter-name>Filter2</filter-name>
-  	<url-pattern>/Filter3</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-  	<filter-name>Filter2</filter-name>
-  	<servlet-name>Home</servlet-name>
-  </filter-mapping>
-  <filter-mapping>
-  	<filter-name>Filter2</filter-name>
-  	<servlet-name>GlobalCounter</servlet-name>
-  </filter-mapping>
-  <filter-mapping>
-  	<filter-name>Filter2</filter-name>
-  	<servlet-name>ServiceCounter</servlet-name>
-  </filter-mapping>
-  <filter-mapping>
-  	<filter-name>Filter2</filter-name>
-  	<servlet-name>HttpHeaders</servlet-name>
-  </filter-mapping>
-  <filter-mapping>
-  	<filter-name>Filter2</filter-name>
-  	<servlet-name>Servlet5</servlet-name>
-  </filter-mapping>
+  
+  
+  	
   <listener>
   	<listener-class>mx.ipn.escom.wad.listeners.Listener1</listener-class>
+  </listener>
+  <listener>
+  	<listener-class>mx.ipn.escom.wad.listeners.Listener2</listener-class>
   </listener>
   
   
@@ -88,23 +60,23 @@
   	<servlet-class>mx.ipn.escom.wad.servlets.Servlet5</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>FormLogIn</servlet-name>
-  	<display-name>FormLogIn</display-name>
-  	<description></description>
-  	<servlet-class>mx.ipn.escom.wad.servlets.FormLogIn</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>ServletAutenticacion</servlet-name>
-  	<display-name>ServletAutenticacion</display-name>
-  	<description></description>
-  	<servlet-class>mx.ipn.escom.wad.servlets.ServletAutenticacion</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>Home</servlet-name>
-  	<display-name>Home</display-name>
-  	<description></description>
-  	<servlet-class>mx.ipn.escom.wad.servlets.Home</servlet-class>
-  </servlet>
+		<servlet-name>LoginCtrl</servlet-name>
+		<servlet-class>mx.ipn.escom.wad.tarea6.controller.LoginCtrl</servlet-class>
+	</servlet>
+	 <servlet>
+	  	<servlet-name>Home</servlet-name>
+	  	<display-name>Home</display-name>
+	  	<description></description>
+	  	<servlet-class>mx.ipn.escom.wad.servlets.Home</servlet-class>
+	  </servlet>
+	  <servlet>
+	  	<servlet-name>FormLogIn</servlet-name>
+	  	<display-name>FormLogIn</display-name>
+	  	<description></description>
+	  	<servlet-class>mx.ipn.escom.wad.servlets.FormLogIn</servlet-class>
+	  </servlet>
+  
+  
   
   
   
@@ -118,28 +90,29 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>ServiceCounter</servlet-name>
-  	<url-pattern>/ServiceCounter</url-pattern>
+  	<url-pattern>/privado/ServiceCounter</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>GlobalCounter</servlet-name>
-  	<url-pattern>/GlobalCounter</url-pattern>
+  	<url-pattern>/privado/GlobalCounter</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>Servlet5</servlet-name>
-  	<url-pattern>/Servlet5</url-pattern>
+  	<url-pattern>/privado/Servlet5</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>FormLogIn</servlet-name>
-  	<url-pattern>/LogIn</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ServletAutenticacion</servlet-name>
-  	<url-pattern>/ServletAutenticacion</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>Home</servlet-name>
-  	<url-pattern>/Home</url-pattern>
-  </servlet-mapping>
+		<servlet-name>LoginCtrl</servlet-name>
+		<url-pattern>/login/LoginCtrl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	  	<servlet-name>Home</servlet-name>
+	  	<url-pattern>/privado/Home</url-pattern>
+	  </servlet-mapping>
+	  <servlet-mapping>
+	  	<servlet-name>FormLogIn</servlet-name>
+	  	<url-pattern>/LogIn</url-pattern>
+	  </servlet-mapping>
+  
   
   <error-page>
 		<error-code>666</error-code>

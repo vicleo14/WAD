@@ -25,15 +25,15 @@ public class FormLogIn extends HttpServlet {
 		out.println("<body  style=\"text-align: center;\">");
 		out.println("<h2>Login</h2>");
 		out.println("<div>");
-		out.println("<form method='post' action='ServletAutenticacion' >");
+		out.println("<form method='post' action='login/LoginCtrl' >");
 		if (error!=null)
 		{
 			out.println("<h3 style=\"color:red;\">Username and/or password are wrong</h3>");
 		}
 		
 		
-		out.println("<input type='text' name='user' placeholder='usuario' /><br />");
-		out.println("<input type='password' name='pswd' placeholder='contraseña' /><br />");
+		out.println("<input type='text' name='username' placeholder='usuario' /><br />");
+		out.println("<input type='password' name='password' placeholder='contraseña' /><br />");
 		out.println("<input type='submit' value='Send' /><br />");
 		out.println("<div>");
 		out.println("</form>");

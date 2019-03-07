@@ -11,11 +11,11 @@
 	</ul>
 	<li><a href="">Recursos privados:</a>
 	<ul>
-		<li><a href="Home">Home</a></li>
-		<li><a href="GlobalCounter">GlobalCounter</a></li>
-		<li><a href="ServiceCounter">Service Counter</a></li>
-		<li><a href="HttpHeaders">HttpHeadres</a></li>
-		<li><a href="Servlet5">Servlet 5</a></li>
+		<li><a href="privado/Home">Home</a></li>
+		<li><a href="privado/GlobalCounter">GlobalCounter</a></li>
+		<li><a href="privado/ServiceCounter">Service Counter</a></li>
+		<li><a href="privado/HttpHeaders">HttpHeadres</a></li>
+		<li><a href="privado/Servlet5">Servlet 5</a></li>
 	</ul>
 </ul>
 </body>
