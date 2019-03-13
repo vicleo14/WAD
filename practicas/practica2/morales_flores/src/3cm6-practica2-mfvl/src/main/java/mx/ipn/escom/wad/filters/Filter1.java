@@ -31,40 +31,39 @@ public class Filter1 implements Filter {
 
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		String recursoPrivado="privado/";
-		String c2="";
+		String recursoPrivado="/3cm6-practica2-mfvl/privado";
 		boolean permitido=false;
 		HttpServletRequest req=(HttpServletRequest)request;
 		Date fecha =new Date();
 		DateFormat df=new SimpleDateFormat("dd/MM/yy | HH:mm:ss");
 		String url=req.getRequestURL().toString();
-		System.out.println("Recurso solicitado:"+url);
+		//System.out.println("LOG: "+req.getRemoteAddr()+" | "+df.format(fecha)+" | "+req.getMethod()+" |"+req.getRequestURL());
+		//chain.doFilter(request, response);
 		if(url.indexOf(recursoPrivado)!=-1)//Retorna -1 si no lo contiene
 		{
 			permitido=false;
-			System.out.println("Privado");
+			//System.out.println("Privado");
 			
 		}
 		else
 		{
 			permitido=true;
-			System.out.println("Público");
+			//System.out.println("Público");
 		}
 		
 		
-		System.out.println("Filter: "+req.getRemoteAddr()+" | "+df.format(fecha)+" | "+req.getMethod()+" |"+req.getRequestURL());
 		HttpSession session=req.getSession();
 		Object o=session.getAttribute(NombreObjetosSession.USER);
-		if(o!= null && o instanceof Usuario)
+		if((o!= null && o instanceof Usuario) || permitido)
 		{
-			System.out.println("Filter: "+req.getRemoteAddr()+" | "+df.format(fecha)+" | "+req.getMethod()+" |"+req.getRequestURL());
+			System.out.println("LOG: "+req.getRemoteAddr()+" | "+df.format(fecha)+" | "+req.getMethod()+" |"+req.getRequestURL());
 			chain.doFilter(request, response);
 		}
 		else
 		{
-			System.out.println("Filter: "+req.getRemoteAddr()+" | "+df.format(fecha)+" | "+req.getMethod()+" |"+req.getRequestURL()+"| NOT ALLOWED");
+			System.out.println("LOG: "+req.getRemoteAddr()+" | "+df.format(fecha)+" | "+req.getMethod()+" |"+req.getRequestURL()+"| NOT ALLOWED");
 			HttpServletResponse resp=(HttpServletResponse)response;
-			System.out.println("Valor de recurso:"+permitido);
+			//System.out.println("Valor de recurso:"+permitido);
 			if(permitido)
 				chain.doFilter(request, response);
 			else

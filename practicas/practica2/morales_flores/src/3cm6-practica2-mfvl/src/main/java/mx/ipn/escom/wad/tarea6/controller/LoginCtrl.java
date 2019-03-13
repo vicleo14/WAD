@@ -49,8 +49,10 @@ public class LoginCtrl extends HttpServlet {
 			usuario = LoginBs.login(user, pswd);
 			HttpSession session = request.getSession();
 			session.setAttribute(NombreObjetosSession.USER, usuario);
+			
 			if(usuario!=null)
 			{
+				System.out.println("Usuario"+usuario.getLogin()+" subido a la sesión");
 				RequestDispatcher rd = request.getRequestDispatcher("../privado/Home");
 				rd.forward(request, response);
 			}
